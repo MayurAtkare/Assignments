@@ -1,0 +1,198 @@
+How do you load a CSV file into a Pandas DataFrame?
+
+Load the CSV into a DataFrame: import pandas as pd. df = pd.read_csv('data.csv') ...
+Print the DataFrame without the to_string() method: import pandas as pd. ...
+Check the number of maximum returned rows: import pandas as pd. ...
+Increase the maximum number of rows to display the entire DataFrame: import pandas as pd.
+
+Q2. How do you check the data type of a column in a Pandas DataFrame?
+
+To check the data type in pandas DataFrame we can use the “dtype” attribute. The attribute returns a series with the data type of each column.
+And the column names of the DataFrame are represented as the index of the resultant series object and the corresponding data types are returned as values of 
+the series object.If any column has mixed data types are stored then the data type of the entire column is indicated as object dtype.
+
+Q3. How do you select rows from a Pandas DataFrame based on a condition?
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame()
+df['Name'] = ['John', 'Doe', 'Bill','Jim','Harry','Ben']
+df['TotalMarks'] = [82, 38, 63,22,55,40]
+df['Grade'] = ['A', 'E', 'B','E','C','D']
+df['Promoted'] = [True, False,True,False,True,True]
+df
+square brackets to access rows from Pandas DataFrame.
+df[2:4]
+
+Q4. How do you rename columns in a Pandas DataFrame?
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame()
+df['Name'] = ['John', 'Doe', 'Bill','Jim','Harry','Ben']
+df['TotalMarks'] = [82, 38, 63,22,55,40]
+df['Grade'] = ['A', 'E', 'B','E','C','D']
+df['Promoted'] = [True, False,True,False,True,True]
+df
+df1=df.rename(columns={'Name': 'EmpName', 'TotalMarks': 'EmpID', 'Grade': 'Empclass','Promoted':'Reason'})
+print(df1)
+
+Q5. How do you drop columns in a Pandas DataFrame?
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame()
+df['Name'] = ['John', 'Doe', 'Bill','Jim','Harry','Ben']
+df['TotalMarks'] = [82, 38, 63,22,55,40]
+df['Grade'] = ['A', 'E', 'B','E','C','D']
+df['Promoted'] = [True, False,True,False,True,True]
+df
+df1=df.rename(columns={'Name': 'EmpName', 'TotalMarks': 'EmpID', 'Grade': 'Empclass','Promoted':'Reason'})
+print(df1)
+df1.drop(['EmpName'] ,axis=1)
+             The drop() method removes the specified row or column. By specifying the column axis ( axis='columns' ), the drop() method removes the specified
+column. By specifying the row axis ( axis='index' ), the drop() method removes the specified row.
+
+Q6. How do you find the unique values in a column of a Pandas DataFrame?
+
+ Unique values in column (multiple columns) from pandas DataFrame using unique() or Series. unique() functions. unique() from Series is used to get unique 
+values from a single column and the other one is used to get from multiple columns.
+import pandas as pd
+import numpy as np
+df = pd.DataFrame()
+df['Name'] = ['John', 'Doe', 'Bill','Jim','Harry','Ben']
+df['TotalMarks'] = [82, 38, 63,22,55,40]
+df['Grade'] = ['A', 'E', 'B','E','C','D']
+df['Promoted'] = [True, False,True,False,True,True]
+df
+df.Name.unique()
+
+Q7. How do you find the number of missing values in each column of a Pandas DataFrame?
+
+To count the NaN values in a column in a Pandas DataFrame, we can use the isna() method with sum
+
+Q8. How do you fill missing values in a Pandas DataFrame with a specific value?
+
+The fillna() method replaces the NULL values with a specified value.
+The fillna() method returns a new DataFrame object unless the inplace parameter is set to True, in that case the fillna() method does the replacing in the 
+original DataFrame instead.
+dataframe.fillna(value, method, axis, inplace, limit, downcast)
+
+Q9. How do you concatenate two Pandas DataFrames?
+
+
+df1 = pd.DataFrame({'id': ['A01', 'A02', 'A03', 'A04'],
+                    'Name': ['ABC', 'PQR', 'DEF', 'GHI']})
+
+df2 = pd.DataFrame({'id': ['B05', 'B06', 'B07', 'B08'],
+                    'Name': ['XYZ', 'TUV', 'MNO', 'JKL']})
+  
+  
+frames = [df1, df2]
+  
+result = pd.concat(frames)
+display(result)
+The concat() function in pandas is used to append either columns or rows from one DataFrame to another. The concat() function does all the heavy lifting of 
+performing concatenation operations along an axis while performing optional set logic (union or intersection) of the indexes (if any) on the other axes.
+
+Q10. How do you merge two Pandas DataFrames on a specific column?
+df1 = pd.DataFrame({'Name':['Raju', 'Rani', 'Geeta', 'Sita', 'Sohit'],
+                    'Marks':[80, 90, 75, 88, 59]})
+  
+df2 = pd.DataFrame({'Name':['Raju', 'Divya', 'Geeta', 'Sita'],
+                    'Grade':['A', 'A', 'B', 'A'],
+                    'Rank':[3, 1, 4, 2 ],
+                    'Gender':['Male', 'Female', 'Female', 'Female']})
+display(df1)
+  
+display(df2)
+df1.merge(df2[['Name', 'Grade', 'Rank']])
+
+We can merge two Pandas DataFrames on certain columns using the merge function by simply specifying the certain columns for merge. 
+DataFrame.merge(right, how=’inner’, on=None, left_on=None, right_on=None, left_index=False, right_index=False, sort=False, copy=True, indicator=False, 
+validate=None)
+
+Q11. How do you group data in a Pandas DataFrame by a specific column and apply an aggregation function?
+
+Dataframe.aggregate() function is used to apply some aggregation across one or more column. Aggregate using callable, string, dict, or list of 
+string/callables. Most frequently used aggregations are:
+
+sum: Return the sum of the values for the requested axis
+min: Return the minimum of the values for the requested axis
+max: Return the maximum of the values for the requested axis
+import numpy as np
+import pandas as pd
+df = pd.read_csv("nba.csv")
+df.aggregate(['sum', 'min'])
+
+Q12. How do you pivot a Pandas DataFrame?
+
+The pivot() function is used to reshaped a given DataFrame organized by given index / column values. This function does not support data aggregation, 
+multiple values will result in a MultiIndex in the columns.
+DataFrame.pivot(self, index=None, columns=None, values=None)
+import numpy as np
+import pandas as pd
+df = pd.DataFrame({'A': ['John', 'Boby', 'Mina'],
+      'B': ['Masters', 'Graduate', 'Graduate'],
+      'C': [27, 23, 21]})
+df
+df.pivot('A', 'B', 'C')
+df.pivot(index ='A', columns ='B', values =['C', 'A'])
+
+Q13. How do you change the data type of a column in a Pandas DataFrame?
+
+DataFrame.astype() method is used to cast pandas object to a specified dtype. This function also provides the capability to convert any suitable existing
+column to a categorical type.
+import pandas as pd
+df = pd.DataFrame({
+    'A': [1, 2, 3, 4, 5],
+    'B': ['a', 'b', 'c', 'd', 'e'],
+    'C': [1.1, '1.0', '1.3', 2, 5]})
+df = df.astype(str)
+print(df.dtypes)
+
+Q14. How do you sort a Pandas DataFrame by a specific column?
+
+The default sorting order of sort_values() function is ascending order. In this example, we will create a dataframe and sort the rows by a specific column in
+ascending order.
+import numpy as np 
+import pandas as pd
+data = {'name': ['Somu', 'Kiku', 'Amol', 'Lini'],
+'physics': [68, 74, 77, 78],
+'chemistry': [84, 56, 73, 69],
+'algebra': [78, 88, 82, 87]}
+df_marks = pd.DataFrame(data)
+sorted_df = df_marks.sort_values(by='algebra')
+print(sorted_df)
+
+Q15. How do you create a copy of a Pandas DataFrame?
+
+The copy() method returns a copy of the DataFrame.
+By default, the copy is a "deep copy" meaning that any changes made in the original DataFrame will NOT be reflected in the copy.
+data = {
+  "name": ["Sally", "Mary", "John"],
+  "qualified": [True, False, False]
+}
+df = pd.DataFrame(data)
+newdf = df.copy()
+print(newdf)
+
+Q16. How do you filter rows of a Pandas DataFrame by multiple conditions?
+
+Q17. How do you calculate the mean of a column in a Pandas DataFrame?
+
+Q18. How do you calculate the standard deviation of a column in a Pandas DataFrame?
+
+Q19. How do you calculate the correlation between two columns in a Pandas DataFrame?
+
+Q20. How do you select specific columns in a DataFrame using their labels?
+
+Q21. How do you select specific rows in a DataFrame using their indexes?
+
+Q22. How do you sort a DataFrame by a specific column?
+
+Q23. How do you create a new column in a DataFrame based on the values of another column?
+
+Q24. How do you remove duplicates from a DataFrame?
+
+Q25. What is the difference between .loc and .iloc in Pandas?
