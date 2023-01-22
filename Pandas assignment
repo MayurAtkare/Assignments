@@ -179,20 +179,195 @@ print(newdf)
 
 Q16. How do you filter rows of a Pandas DataFrame by multiple conditions?
 
+There are possibilities of filtering data from Pandas dataframe with multiple conditions during the entire software development. The reason is dataframe may be having 
+multiple columns and multiple rows. Selective display of columns with limited rows is always the expected view of users. To fulfill the user’s expectations and also 
+help in machine deep learning scenarios, filtering of Pandas dataframe with multiple conditions is much necessary.
+SIMPLE DATAFRAME
+dataFrame = pd.DataFrame({'Name': [' RACHEL  ', ' MONICA  ', ' PHOEBE  ',
+                                   '  ROSS    ', 'CHANDLER', ' JOEY    '],
+                           
+                          'Age': [30, 35, 37, 33, 34, 30],
+                           
+                          'Salary': [100000, 93000, 88000, 120000, 94000, 95000],
+                           
+                          'JOB': ['DESIGNER', 'CHEF', 'MASUS', 'PALENTOLOGY',
+                                  'IT', 'ARTIST']})
+display(dataFrame)
+Method 1: Using loc =It is used to access single or more rows and columns by label(s) or by a boolean array. loc works with column labels and indexes.
+display(dataFrame.loc[(dataFrame['Salary']>=100000) & (dataFrame['Age']< 40) & (dataFrame['JOB'].str.startswith('D')),
+                    ['Name','JOB']])
+Method 2: Using NumPy =
+filtered_values = np.where((dataFrame['Salary']>=100000) & (dataFrame['Age']< 40) & (dataFrame['JOB'].str.startswith('D')))
+print(filtered_values)
+display(dataFrame.loc[filtered_values])
+
+Method 3: Using Query (eval and query works only with columns) =Its just query the columns of a DataFrame with a single or more Boolean expressions and if multiple, 
+                                                                it is having & condition in the middle.
+display(dataFrame.query('Salary  <= 100000 & Age < 40 & JOB.str.startswith("C").values'))
+
+Method 4: pandas Boolean indexing multiple conditions standard way (“Boolean indexing” works with values in a column only) =In order to select the subset of data 
+                                                                                 using the values in the dataframe and applying Boolean conditions.
+display(dataFrame[(dataFrame['Salary']>=100000) & (dataFrame['Age']<40) & dataFrame['JOB'].str.startswith('P')][['Name','Age','Salary']])
+
+Method 5: Eval multiple conditions  (“eval” and “query” works only with columns )=We get all rows having Salary lesser or equal to 100000 and Age < 40 and their JOB 
+                                                                                   starts with ‘A’ from the dataframe. 
+display(dataFrame[dataFrame.eval("Salary <=100000 & (Age <40) & JOB.str.startswith('A').values")])
+
+Dataframes are a very essential concept in Python and filtration of data is required can be performed based on various conditions. They can be achieved in any one of the above ways. Points to be noted:
+
+loc works with column labels and indexes.
+eval and query works only with columns.
+Boolean indexing works with values in a column only.
+
 Q17. How do you calculate the mean of a column in a Pandas DataFrame?
+Pandas dataframe.mean() function return the mean of the values for the requested axis. If the method is applied on a pandas series object, then the method returns a
+scalar value which is the mean value of all the observations in the dataframe. If the method is applied on a pandas dataframe object, then the method returns a pandas
+series object which contains the mean of the values over the specified axis.
+import pandas as pd
+df = pd.DataFrame({"A":[12, 4, 5, 44, 1],
+                   "B":[5, 2, 54, 3, 2], 
+                   "C":[20, 16, 7, 3, 8],
+                   "D":[14, 3, 17, 2, 6]})
+df
+df.mean(axis = 0)
+
 
 Q18. How do you calculate the standard deviation of a column in a Pandas DataFrame?
 
+Pandas dataframe.std() function return sample standard deviation over requested axis. By default the standard deviations are normalized by N-1. It is a measure that
+is used to quantify the amount of variation or dispersion of a set of data values.
+import pandas as pd
+df = pd.DataFrame({"A":[12, 4, 5, 44, 1],
+                   "B":[5, 2, 54, 3, 2], 
+                   "C":[20, 16, 7, 3, 8],
+                   "D":[14, 3, 17, 2, 6]})
+df
+df.std(axis=0)
+
 Q19. How do you calculate the correlation between two columns in a Pandas DataFrame?
 
+Correlation is used to summarize the strength and direction of the linear association between two quantitative variables. It is denoted by r and values between -1
+and +1. A positive value for r indicates a positive association, and a negative value for r indicates a negative association.
+import pandas as pd
+data = pd.DataFrame({
+    "column1": [12, 23, 45, 67],
+    "column2": [67, 54, 32, 1],
+    "column3": [34, 23, 56, 23]
+}
+)
+print(data)
+print(data['column1'].corr(data['column2']))
+print(data['column2'].corr(data['column3']))
+print(data['column1'].corr(data['column3']))
+By using corr() function we can get the correlation between two columns in the dataframe
+
 Q20. How do you select specific columns in a DataFrame using their labels?
+The [ ] is used to select a column by mentioning the respective column name.
+import pandas as pd
+employees = [('Stuti', 28, 'Varanasi', 20000),
+             ('Saumya', 32, 'Delhi', 25000),
+             ('Aaditya', 25, 'Mumbai', 40000),
+             ('Saumya', 32, 'Delhi', 35000),
+             ('Saumya', 32, 'Delhi', 30000),
+             ('Saumya', 32, 'Mumbai', 20000),
+             ('Aaditya', 40, 'Dehradun', 24000),
+             ('Seema', 32, 'Delhi', 70000)
+             ]
+df = pd.DataFrame(employees,
+                  columns=['Name', 'Age',
+                           'City', 'Salary'])
+result = df["City"]
+result
 
 Q21. How do you select specific rows in a DataFrame using their indexes?
 
+import pandas as pd
+employees = [('Stuti', 28, 'Varanasi', 20000),
+            ('Saumya', 32, 'Delhi', 25000),
+            ('Aaditya', 25, 'Mumbai', 40000),
+            ('Saumya', 32, 'Delhi', 35000),
+            ('Saumya', 32, 'Delhi', 30000),
+            ('Saumya', 32, 'Mumbai', 20000),
+            ('Aaditya', 40, 'Dehradun', 24000),
+            ('Seema', 32, 'Delhi', 70000)
+            ]
+df = pd.DataFrame(employees,
+                columns =['Name', 'Age',
+                'City', 'Salary'])
+df.set_index("Name", inplace = True)
+result = df.loc["Stuti"]
+result
+
 Q22. How do you sort a DataFrame by a specific column?
+import pandas as pd
+students = [
+           (75, 50, 60, 70),
+           (75, 55, 65, 75),
+           (75, 35, 45, 25),
+           (75, 90, 60, 70),
+           (76, 90, 70, 60),
+           (90, 80, 70, 60),
+           (65, 10, 30, 20)
+            ]
+details = pd.DataFrame(students, columns =['Hindi', 'Math', 
+                                           'Science', 'English'],
+                        index = ['Ankit', 'Rahul', 'Aishwarya', 
+                                 'Shivangi', 'Priya', 'Swapnil',
+                                 'Shaurya'])
+rslt_df = details.sort_values(by = 'Shivangi', axis = 1)
+rslt_df
 
 Q23. How do you create a new column in a DataFrame based on the values of another column?
 
+One of these operations could be that we want to create new columns in the DataFrame based on the result of some operations on the existing columns in the DataFrame.
+import pandas as pd
+df = pd.DataFrame({'Date':['10/2/2011', '11/2/2011', '12/2/2011', '13/2/2011'],
+                    'Event':['Music', 'Poetry', 'Theatre', 'Comedy'],
+                    'Cost':[10000, 5000, 15000, 2000]})
+print(df)
+we will create a new column called ‘Discounted_Price’ after applying a 10% discount on the existing ‘Cost’ column.
+
+df['Discounted_Price'] = df.apply(lambda row: row.Cost -
+                                  (row.Cost * 0.1), axis = 1)
+
+print(df)
+
 Q24. How do you remove duplicates from a DataFrame?
 
+The drop_duplicates() method removes duplicate rows.
+Use the subset parameter if only some specified columns should be considered when looking for duplicates.
+import pandas as pd
+  
+data = {
+    "A": ["TeamA", "TeamB", "TeamB", "TeamC", "TeamA"],
+    "B": [50, 40, 40, 30, 50],
+    "C": [True, False, False, False, True]
+}
+  
+df = pd.DataFrame(data)
+  
+display(df.drop_duplicates())
+
 Q25. What is the difference between .loc and .iloc in Pandas?
+
+The Pandas offers .loc[] and .iloc[] methods for data slicing. Data Slicing generally refers to inspect your data sets. These two methods belong to the index 
+selection method that is used to set an identifier for each row of the data set. The indexing can take specific labels, and these labels can either be an integer or 
+any other value specified by the user.
+
+The .loc[] method is used to retrieve the group of rows and columns by labels or a boolean array present in the DataFrame. It takes only index labels, and if it
+exists in the caller DataFrame, it returns the rows, columns, or DataFrame. It is a label-based method but may be used with the boolean array.
+
+Whereas, the .iloc[] method is used when the index label of the DataFrame is other than numeric series of 0,1,2,....,n, or in the case when the user does not know the
+index label.
+The .loc[] method is a label based method that means it takes names or labels of the index when taking the slices, whereas .iloc[] method is based on the index's 
+position. It behaves like a regular slicing where we just have to indicate the positional index number and simply get the appropriate slice.
+The .loc[] method includes the last element of the table whereas .iloc[] method does not include the last element.
+The .loc[] method is a name-based indexing, whereas the .iloc[] method is positional based indexing.
+The arguments of .iloc[] can be:
+list of rows and columns
+range of rows and columns
+single row and column
+Whereas, the arguments of .loc[] can be:
+row label
+list of row label
+The .loc[] method indexer can perform the boolean selection by passing the boolean series, but in the case of .iloc[]method, we cannot pass a boolean series.
