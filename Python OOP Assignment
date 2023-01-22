@@ -149,24 +149,76 @@ The else block lets we execute code when there is no error.
 
 Q24. What are the two most popular try statement variations?
 
+The Different Try/Except Variations try / except and even a try / except / except there are two other optional segments to a try block: else and finally .
+Both of these optional blocks will come after the try and the except .
+
 Q25. What is the purpose of the raise statement?
+
+The raise keyword is used to raise an exception.We can define what kind of error to raise, and the text to print to the user.
 
 Q26. What does the assert statement do, and what other statement is it like?
 
+The assert keyword is used when debugging code.The assert keyword lets you test if a condition in your code returns True, if not, the program will raise an 
+AssertionError.We can write a message to be written if the code returns False.
+
 Q27. What is the purpose of the with/as argument, and what other statement is it like?
+
+The with statement is a replacement for commonly used try/finally error-handling statements. A common example of using the with statement is opening a file.
+To open and write to a file in Python
+   In Python, the with statement replaces a try-catch block with a concise shorthand. More importantly, it ensures closing resources right after processing 
+   them. A common example of using the with statement is reading or writing to a file. A function or class that supports the with statement is known as a 
+context manager. A context manager allows you to open and close resources right when you want to. For example, the open() function is a context manager. 
+When you call the open() function using the with statement, the file closes automatically after you’ve processed the file.
 
 Q28. What are *args, **kwargs?
 
+*args means =Special syntax *args in function definitions in python is used to pass a variable number of arguments to a function. It is used to pass a non-key worded, 
+variable-length argument list. 
+**kwargs means = Syntax **kwargs in function definitions in python is used to pass a keyworded, variable-length argument list. We use the name kwargs with the
+double star. The reason is that the double star allows us to pass through keyword arguments (and any number of them).
+
 Q29. How can I pass optional or keyword parameters from one function to another?
+
+When functions are defined then the parameters are written in the form “datatype keyword-name”. So python provides a mechanism to call the function using the keyword
+name for passing the values. This helps the programmer by relieving them not to learn the sequence or the order in which the parameters are to be passed.
+Some important points we need to remember are as follows:
+1.In this case, we are not required to maintain the order of passing the values.
+2.There should be no difference between the passed and declared keyword names.
 
 Q30. What are Lambda Functions?
 
+A lambda function is a small anonymous function.A lambda function can take any number of arguments, but can only have one expression.
+
 Q31. Explain Inheritance in Python with an example?
+
+One of the core concepts in object-oriented programming (OOP) languages is inheritance. It is a mechanism that allows you to create a hierarchy of classes that share a
+set of properties and methods by deriving a class from another class. Inheritance is the capability of one class to derive or inherit the properties from another class.
+class Animal:
+    name = ""
+    def eat(self):
+        print("I can eat")
+class Dog(Animal):
+    def display(self):
+        print("My name is ", self.name)
+labrador = Dog()
+labrador.name = "Rohu"
+labrador.eat()
+labrador.display()
 
 Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of class C, which version gets invoked?
 
 Q33. Which methods/functions do we use to determine the type of instance and inheritance?
 
+Use isinstance() to check an instance's type: isinstance(obj, int) will be True only if obj.__class__ is int or some class derived from int .
+Use issubclass() to check class inheritance: issubclass(bool, int) is True since bool is a subclass of int .
+
 Q34.Explain the use of the 'nonlocal' keyword in Python.
 
+The nonlocal keyword is used to work with variables inside nested functions, where the variable should not belong to the inner function.
+Use the keyword nonlocal to declare that the variable is not local.
+
 Q35. What is the global keyword?
+
+Python global keyword allows the user to define a variable globally whose value can be modified outside the current scope.
+            The term global denotes that the scope of a variable declared as global will persist for the duration of the entire program’s execution. We utilize 
+ global keyword inside a function only when we wish to conduct value assignments or update a variable.
