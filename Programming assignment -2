@@ -1,0 +1,64 @@
+1. Write a Python program to convert kilometers to miles?
+
+km = 4
+miles = km/1.60934
+print("For {}km equivalent distance in miles = {}".format(km, miles))
+
+2.Write a Python program to convert Celsius to Fahrenheit?
+c = 35
+f = (9*c/5)+32
+
+print("For Celsius = {} equivalent Fahrenheit = {}".format(c, f))
+
+3. Write a Python program to display calendar?
+ 
+import calendar
+year = 2023
+month = 4
+print(calendar.month(year, month))
+
+year = 2023
+print(calendar.calendar(year))
+ 
+4. Write a Python program to solve quadratic equation?
+
+import math
+print("ax^2 + bx^1 + c = 0")
+print("Enter the coeff a, b and constant c")
+
+a = int(input(("Enter the coeff a: ")))
+b = int(input(("Enter the coeff b: ")))
+c = int(input(("Enter the constant c: ")))
+
+d = (b**2) - (4*a*c)
+
+root1 = ((-1*b)+(math.sqrt(d))) / (2*a)
+root2 = ((-1*b)-(math.sqrt(d))) / (2*a)
+
+print('\nFor quad eq. {}x^2 + ({})x^1 + {}'.format(a,b,c))
+print('The solutions are: {} and {}'.format(root1, root2))
+
+ANSWER: OUTPUT IS GIVEN BELOW
+Enter the coeff a, b and constant c
+Enter the coeff a: 1
+Enter the coeff b: 5
+Enter the constant c: 6
+
+For quad eq. 1x^2 + (5)x^1 + 6
+The solutions are: -2.0 and -3.0
+ 
+5. Write a Python program to swap two variables without temp variable?
+ 
+var1 = 6
+var2 = 4
+
+print('Before swap:\nvar1 = {} and var2 = {}'.format(var1, var2))
+var2 = var1 + var2
+var1 = var2 - var1
+var2 = var2 - var1
+
+print('\nAfter swap:\nvar1 = {} and var2 = {}'.format(var1, var2))
+ 
+ 
+ 
+ 
