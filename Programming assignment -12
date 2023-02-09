@@ -1,0 +1,77 @@
+1. Write a Python program to Extract Unique values dictionary values?
+dict1 = {'k1': 1, 'k2': 1, 'k3': 'hello', 'k4': 'hello', 'k5':1234}
+unique_values = {i for i in dict1.values()}
+unique_values
+
+2. Write a Python program to find the sum of all items in a dictionary?
+test_dict = {'k1' : 89,
+             'k2' : 111,
+             'k3' : 123,
+             'k4' : 5}
+
+sum = 0
+for i in test_dict.values():
+    sum +=sum + i
+print("Sum of all values is : {}".format(sum))
+
+3. Write a Python program to Merging two Dictionaries?
+dict1 = { 'x': 1, 'l': 2}
+dict2 = { 'k': 3, 'z': 4, 'x': 11}
+# merging dict2 into dict1
+for item in dict2.items():
+    dict1.setdefault(item[0], item[1])
+print(dict1)
+
+ 4. Write a Python program to convert key-values list to flat dictionary?
+ test_dict = {'month' : [1, 2, 3], 'name' : ['Jan', 'Feb', 'March']}
+  
+# Using dict() + zip() to convert key-values list to flat dictionary
+res = dict(zip(test_dict['month'], test_dict['name']))
+
+print("Flattened dictionary : " + str(res)) 
+
+5. Write a Python program to insertion at the beginning in OrderedDict?
+from collections import OrderedDict
+  
+# initialising ordered_dict
+iniordered_dict = OrderedDict([('Feb', '2'), ('Mar', '3')])
+  
+# inserting items in starting of dict 
+iniordered_dict.update({'Jan':'1'})
+iniordered_dict.move_to_end('Jan', last = False)
+  
+# print result
+print ("Ordered Dictionary after insertion : "+str(iniordered_dict))
+
+6. Write a Python program to check order of character in string using OrderedDict()?
+from collections import OrderedDict 
+  
+def checkOrderofString(str, pattern): 
+      
+    # create empty OrderedDict 
+    dict = OrderedDict.fromkeys(str) 
+    print(dict)   
+    ptrlen = 0
+    for key,value in dict.items(): 
+        
+        if (key == pattern[ptrlen]): 
+            ptrlen = ptrlen + 1
+          
+        # check if we have traverse complete pattern string 
+        if (ptrlen == (len(pattern))):            
+            return 'true'
+  
+    # if we come out from for loop that means order was mismatched 
+    return 'false'
+    string = input("enter string : ")
+pattern = input("Enter Pattern : ")
+if checkOrderofString(string,pattern):
+    print("Pattern matched")
+else:
+    print("Pattern not matched")
+    
+7. Write a Python program to sort Python Dictionaries by Key or Value?
+a = {'k1':2, 'k2':1, 'k3':3, '4':4 ,'6':6, 'key7':7}
+print(sorted(a.keys()))
+print(sorted(a.items()))
+print(sorted(a.values()))
